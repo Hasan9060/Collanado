@@ -4,14 +4,12 @@ import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import {
-  Menu, X, ChevronDown, ChevronUp, User, LogOut, Settings,
-  GraduationCap, BookOpen, Users,
+  Menu, X, ChevronDown, ChevronUp, BookOpen, Users,
   Calendar, FileText, ClipboardList, Shield, Copy, FileCheck,
-  Award, School, BookMarked, UserCheck, Facebook, Youtube,
+  Award, BookMarked, UserCheck, Facebook, Youtube,
   Instagram, Linkedin, Search, Bell, ExternalLink
 } from "lucide-react"
 import Image from "next/image"
-import nookies from "nookies"
 import { useRouter, usePathname } from "next/navigation"
 
 // Enhanced theme configuration
@@ -108,7 +106,7 @@ const navItems: NavItem[] = [
       { name: "College Location", href: "/more/location" },
       { name: "Gallery", href: "/gallery" },
       { name: "Privacy & Policy", href: "/more/privacy-policy" },
-      { name: "FAQs", href: "/more/frequently-asked-questions"},
+      { name: "FAQs", href: "/more/frequently-asked-questions" },
     ],
   },
   {
@@ -148,13 +146,10 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
-  const [user, setUser] = useState<any>(null)
-  const [userDropdownOpen, setUserDropdownOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const router = useRouter()
   const pathname = usePathname()
-  const userDropdownRef = useRef<HTMLDivElement>(null)
   const searchRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -164,9 +159,6 @@ export default function Header() {
 
     // Close dropdowns when clicking outside
     const handleClickOutside = (event: MouseEvent) => {
-      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target as Node)) {
-        setUserDropdownOpen(false)
-      }
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setSearchOpen(false)
       }
@@ -181,36 +173,7 @@ export default function Header() {
   }, [])
 
 
-  const getInitials = (name: string) =>
-    name
-      ?.split(" ")
-      .map((n) => n[0])
-      .join("")
-      .toUpperCase()
-      .slice(0, 2) || "U"
 
-  const UserAvatar = ({ user, size = 36 }: { user: any; size?: number }) => {
-    if (user?.photoURL) {
-      return (
-        <Image
-          src={user.photoURL}
-          alt="Profile"
-          width={size}
-          height={size}
-          className="rounded-full object-cover border-2 border-yellow-400 shadow-lg"
-          referrerPolicy="no-referrer"
-        />
-      )
-    }
-    return (
-      <div
-        className="rounded-full bg-gradient-to-r from-yellow-500 to-red-600 flex items-center justify-center text-white font-semibold border-2 border-yellow-400 shadow-lg"
-        style={{ width: size, height: size }}
-      >
-        {getInitials(user?.displayName || user?.email)}
-      </div>
-    )
-  }
 
   const isActiveLink = (href: string) => pathname === href
 
@@ -237,7 +200,6 @@ export default function Header() {
   const closeAllMenus = () => {
     setIsOpen(false)
     setOpenSubmenu(null)
-    setUserDropdownOpen(false)
     setSearchOpen(false)
   }
 
@@ -478,76 +440,6 @@ export default function Header() {
 
           {/* Right Section */}
           <div className="flex items-center space-x-3">
-            {user ? (
-              <div className="relative" ref={userDropdownRef}>
-                <button
-                  onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                  className={`flex items-center gap-2 p-2 rounded-xl transition-all duration-300 border ${scrolled
-                    ? "border-gray-300 hover:border-red-300 hover:bg-red-50"
-                    : "border-white/20 hover:border-white/40 hover:bg-white/10"
-                    }`}
-                >
-                  <UserAvatar user={user} />
-                  <ChevronDown
-                    size={16}
-                    className={`transition-transform duration-300 ${userDropdownOpen ? "rotate-180" : ""
-                      } ${scrolled ? "text-gray-700" : "text-white"}`}
-                  />
-                </button>
-
-                {userDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-72 rounded-2xl shadow-2xl bg-white/95 backdrop-blur-lg border border-gray-200/50 py-3 z-[100] animate-in fade-in-0 zoom-in-95">
-                    <div className="px-4 py-3 border-b border-gray-200/50">
-                      <p className="text-sm font-semibold text-gray-900 truncate">
-                        {user.displayName || "Student"}
-                      </p>
-                      <p className="text-xs text-gray-600 truncate">{user.email}</p>
-                    </div>
-
-                    <div className="py-2">
-                      <Link
-                        href="/profile"
-                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 transition-colors"
-                        onClick={closeAllMenus}
-                      >
-                        <User size={18} className="mr-3 text-red-600 flex-shrink-0" />
-                        Profile
-                      </Link>
-
-                      <Link
-                        href="/my-courses"
-                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 transition-colors"
-                        onClick={closeAllMenus}
-                      >
-                        <GraduationCap size={18} className="mr-3 text-red-600 flex-shrink-0" />
-                        My Courses
-                      </Link>
-
-                      <Link
-                        href="/settings"
-                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-red-700 transition-colors"
-                        onClick={closeAllMenus}
-                      >
-                        <Settings size={18} className="mr-3 text-red-600 flex-shrink-0" />
-                        Settings
-                      </Link>
-                    </div>
-
-                    <div className="border-t border-gray-200/50 pt-2">
-                    </div>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Button
-                asChild
-                size="sm"
-                className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl rounded-xl"
-              >
-                <Link href="/auth/login">Login</Link>
-              </Button>
-            )}
-
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}

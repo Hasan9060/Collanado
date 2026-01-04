@@ -54,7 +54,6 @@
     "next": "^14.2.3",
     "next-sanity": "^9.0.0",
     "next-themes": "^0.3.0",
-    "nookies": "^2.5.2",
     "pdfjs-dist": "^5.4.394",
     "postcss": "8.4.30",
     "react": "^18.3.1",
