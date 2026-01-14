@@ -1,5 +1,3 @@
-"use client"
-
 import { Check } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -124,28 +122,28 @@ export default function ProgramsSection() {
                         </div>
 
                         {/* Images Grid */}
-                       <div className="relative grid grid-cols-2 gap-6">
-  {/* Image Card */}
-  {[
-    { src: "/Images/programcompo/pic2.jpeg", alt: "Engineering Lab" },
-    { src: "/Images/programcompo/pic1.jpeg", alt: "Computer Lab" },
-    { src: "/Images/programcompo/pic3.jpeg", alt: "Students" },
-    { src: "/Images/programcompo/pic4.jpeg", alt: "Science Lab" },
-  ].map((item, index) => (
-    <div
-      key={index}
-      className="relative h-45 md:h-60 rounded-2xl overflow-hidden shadow-lg 
+                        <div className="relative grid grid-cols-2 gap-6">
+                            {/* Image Card */}
+                            {[
+                                { src: "/Images/programcompo/pic2.png", alt: "Engineering Lab" },
+                                { src: "/Images/programcompo/pic1.jpeg", alt: "Computer Lab" },
+                                { src: "/Images/programcompo/pic3.jpeg", alt: "Students" },
+                                { src: "/Images/programcompo/pic4.png", alt: "Science Lab" },
+                            ].map((item, index) => (
+                                <div
+                                    key={index}
+                                    className="relative h-45 md:h-60 rounded-2xl overflow-hidden shadow-lg 
                  transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-    >
-      <Image
-        src={item.src}
-        alt={item.alt}
-        fill
-        className="object-cover"
-      />
-    </div>
-  ))}
-</div>
+                                >
+                                    <Image
+                                        src={item.src}
+                                        alt={item.alt}
+                                        fill
+                                        className="object-cover"
+                                    />
+                                </div>
+                            ))}
+                        </div>
 
 
                         {/* Bottom decorative arrows */}

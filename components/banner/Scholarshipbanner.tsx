@@ -26,6 +26,18 @@ export default function ScholarshipBanner() {
       author: "Nelson Mandela",
       text: "Education is the most powerful weapon which you can use to change the world.",
     },
+    {
+      author: "Muhtarma Fatima Jinah",
+      text: "Students should not only seek degrees but should also strive to develop a high standard of character and morality.",
+    },
+    {
+      author: "Liaquat Ali Khan",
+      text: "Education is the foundation of a nation. If the foundation is weak, the building cannot stand for long.",
+    },
+    {
+      author: "Quaid-e-Azam",
+      text: "Knowledge is a greater force than the sword. Go and acquire it.",
+    },
   ];
 
   useEffect(() => {
@@ -45,10 +57,10 @@ export default function ScholarshipBanner() {
           <div className="w-full max-w-4xl">
             <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-l-4 border-red-800 text-center transition-all duration-500 min-h-[300px] sm:min-h-[350px] flex flex-col justify-between items-center">
               <div className="flex-1 flex flex-col justify-center items-center w-full">
-                <span className="inline-block px-4 py-1 mb-6 bg-red-800 text-yellow-300 rounded-full text-sm font-medium animate-in fade-in zoom-in duration-300">
+                <span className="inline-block px-4 py-1 mb-6 bg-red-800 text-yellow-300 rounded-full text-sm font-medium transition-all duration-300">
                   {currentAuthor}
                 </span>
-                <p className="text-gray-800 text-lg sm:text-xl md:text-3xl italic leading-relaxed font-serif min-h-[120px] flex items-center justify-center">
+                <p className="text-gray-800 text-lg sm:text-xl md:text-3xl italic leading-relaxed font-serif min-h-[120px] flex items-center justify-center transition-opacity duration-500">
                   “{quotes[currentQuote].text}”
                 </p>
               </div>

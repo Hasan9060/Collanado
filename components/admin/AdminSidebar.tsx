@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Newspaper, LogOut, Calendar } from "lucide-react";
+import { LayoutDashboard, Newspaper, LogOut, Calendar, BookOpen, BookCheck } from "lucide-react";
 
 export default function AdminSidebar() {
     const pathname = usePathname();
@@ -10,6 +10,8 @@ export default function AdminSidebar() {
     const menuItems = [
         { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
         { name: "Manage News", href: "/admin/news", icon: Newspaper },
+        { name: "Manage Blogs", href: "/admin/blogs", icon: BookOpen },
+        { name: "Manage Magazine", href: "/admin/magazine", icon: BookCheck },
         { name: "Academic Calendar", href: "/admin/academic-calendar", icon: Calendar },
     ];
 

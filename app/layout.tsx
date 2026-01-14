@@ -1,23 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import ClientLayout from '@/components/layout/ClientLayout';
-import BackToTop from "@/components/ui/BackToTop";
 import { Toaster } from "@/components/ui/sonner";
-import CollegeChatbot from "@/components/chatbot/CollegeChatbot";
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
-
-
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-jakarta',
-});
 
 export const metadata: Metadata = {
   title: 'GDC Malir cantt karachi',
@@ -36,7 +21,7 @@ export default function RootLayout({
   return (
 
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jakarta.variable} font-sans`}>
+      <body className="font-sans antialiased selection:bg-red-100 selection:text-red-900">
         <link rel="icon" href="/favicon-new.ico" />
         <ThemeProvider
           attribute="class"
@@ -48,9 +33,7 @@ export default function RootLayout({
             {children}
           </ClientLayout>
         </ThemeProvider>
-        <BackToTop />
         <Toaster />
-        <CollegeChatbot />
       </body>
     </html>
 

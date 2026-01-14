@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { Send, Bot, User, X, MessageCircle, Globe, Loader2, Sparkles } from "lucide-react"
 import Image from "next/image"
 
@@ -38,7 +39,13 @@ const QUICK_QUESTIONS = {
 }
 
 export default function CollegeChatbot() {
+    const pathname = usePathname()
     const [isOpen, setIsOpen] = useState(false)
+
+    // Hide chatbot on admin and studio routes
+    if (pathname?.startsWith('/admin') || pathname?.startsWith('/studio')) {
+        return null;
+    }
     const [messages, setMessages] = useState<Message[]>([])
     const [input, setInput] = useState("")
     const [isLoading, setIsLoading] = useState(false)
@@ -146,7 +153,7 @@ export default function CollegeChatbot() {
             {!isOpen && (
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="fixed bottom-24 right-6 z-50 group"
+                    className="fixed bottom-6 right-6 z-50 group"
                     aria-label="Open chat"
                 >
                     <div className="relative">
@@ -155,10 +162,10 @@ export default function CollegeChatbot() {
 
                         {/* Button */}
                         <div className="relative bg-gradient-to-r from-red-600 to-red-700 text-white p-4 rounded-full shadow-2xl hover:shadow-red-500/50 transition-all duration-300 hover:scale-110">
-                            <MessageCircle size={28} className="animate-bounce" />
+                            <MessageCircle size={28} />
 
                             {/* Notification badge */}
-                            <div className="absolute -top-1 -right-1 w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center text-xs font-bold text-red-900 animate-pulse">
+                            <div className="absolute -top-1 -right-1 w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center text-xs font-bold text-red-900">
                                 <Sparkles size={14} />
                             </div>
                         </div>
@@ -176,7 +183,7 @@ export default function CollegeChatbot() {
                         {/* Header */}
                         <div className="bg-gradient-to-r from-red-700 via-red-600 to-red-700 text-white p-4 pt-safe sm:pt-4 flex items-center justify-between relative overflow-hidden shrink-0 shadow-lg">
                             {/* Animated background */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
 
                             <div className="flex items-center gap-3 relative z-10">
                                 <div className="relative">
@@ -189,7 +196,7 @@ export default function CollegeChatbot() {
                                             className="rounded-full object-cover"
                                         />
                                     </div>
-                                    <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-white animate-pulse shadow-sm"></div>
+                                    <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-white shadow-sm"></div>
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-base sm:text-lg tracking-wide">GDCMC Assistant</h3>
@@ -256,8 +263,8 @@ export default function CollegeChatbot() {
                                     {/* Avatar */}
                                     <div
                                         className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm border border-white ${message.role === "user"
-                                                ? "bg-gradient-to-br from-red-600 to-red-700 text-white"
-                                                : "bg-white text-red-600"
+                                            ? "bg-gradient-to-br from-red-600 to-red-700 text-white"
+                                            : "bg-white text-red-600"
                                             }`}
                                     >
                                         {message.role === "user" ? <User size={16} /> : <Bot size={18} />}
@@ -266,8 +273,8 @@ export default function CollegeChatbot() {
                                     {/* Message Bubble */}
                                     <div
                                         className={`px-4 py-3 shadow-md ${message.role === "user"
-                                                ? "bg-gradient-to-br from-red-600 to-red-700 text-white rounded-2xl rounded-tr-sm"
-                                                : "bg-white border border-gray-100 text-gray-800 rounded-2xl rounded-tl-sm"
+                                            ? "bg-gradient-to-br from-red-600 to-red-700 text-white rounded-2xl rounded-tr-sm"
+                                            : "bg-white border border-gray-100 text-gray-800 rounded-2xl rounded-tl-sm"
                                             }`}
                                     >
                                         <p className="text-sm sm:text-[15px] leading-relaxed whitespace-pre-wrap">{message.content}</p>
@@ -290,9 +297,9 @@ export default function CollegeChatbot() {
                                     </div>
                                     <div className="bg-white border border-gray-100 rounded-2xl rounded-tl-sm px-4 py-3 shadow-md flex items-center gap-2.5">
                                         <div className="flex gap-1">
-                                            <span className="w-2 h-2 bg-red-500 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-                                            <span className="w-2 h-2 bg-red-500 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-                                            <span className="w-2 h-2 bg-red-500 rounded-full animate-bounce"></span>
+                                            <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                                            <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+                                            <span className="w-2 h-2 bg-red-500 rounded-full"></span>
                                         </div>
                                         <span className="text-xs font-medium text-gray-500">Typing...</span>
                                     </div>

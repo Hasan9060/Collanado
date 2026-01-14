@@ -17,29 +17,29 @@ const FAQPage = () => {
 
   const faqItems = [
     {
-      question: "Question",
-      answer: "NCR-CET stands for National College Republic - Common Entrance Test. It is the standardized entrance examination for admissions to various programs offered by our institution."
+      question: "What is the minimum attendance required to sit an exam?",
+      answer: "Students must maintain at least 75% attendance  in each subject to be eligible to appear in examinations, as per college and board regulations."
     },
     {
-      question: "Question",
-      answer: "Yes, admissions for the 2025-26 academic batch are currently open. We encourage interested candidates to apply before the deadline to secure their seats."
+      question: "What are the rules for retaking a failed subject?",
+      answer: "Students who fail a subject may reappear in the supplementary examination according to the rules set by the Board of Intermediate Education."
     },
     {
-      question: "Question",
-      answer: "Our fee structure varies depending on the program and course selection. We offer competitive pricing with flexible payment options. Please contact our admission office for detailed fee breakdown specific to your chosen program."
+      question: "How can I apply for a leaving certificate or transfer certificate?",
+      answer: "Students must submit a written application to the administration office along with required documents to apply for a leaving or transfer certificate."
     },
     {
-      question: "Question",
-      answer: "Yes, we offer various scholarship programs for meritorious students, economically disadvantaged backgrounds, and exceptional talent in sports and arts. Scholarships can cover up to 100% of tuition fees based on eligibility criteria."
+      question: "Where is the college located?",
+      answer: "Government Degree College Malir Cantt is located in Malir Cantonment, Karachi, and is easily accessible through public and private transport."
     },
     {
-      question: "Question",
-      answer: "Yes, NCR-CET is a co-educational institution that welcomes students from all genders. We believe in providing equal educational opportunities and maintaining a diverse learning environment."
+      question: "What are the college timings?",
+      answer: "Government Degree College Malir Cantt operates from 8:30 AM to 1:30 PM, from Monday to Friday. Timings may vary during examinations or official activities as notified by the college administration."
     }
   ];
 
   return (
-    <div className="pt-20 min-h-screen bg-gradient-to-br from-red-50 via-yellow-50 to-red-100">
+    <div className="pt-20 md:pt-32 min-h-screen bg-gradient-to-br from-red-50 via-yellow-50 to-red-100">
       {/* Header */}
       <header className="bg-gradient-to-r from-red-700 to-red-800 shadow-lg">
         <div className="container mx-auto px-4 py-6">

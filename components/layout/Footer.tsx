@@ -1,5 +1,3 @@
-"use client"
-
 import Link from "next/link"
 import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin } from "lucide-react"
 import Image from "next/image"
@@ -9,7 +7,7 @@ export default function Footer() {
     <footer className="bg-[#1a0003] text-gray-300 pt-16 pb-8">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-10">
-          
+
           {/* Brand Info */}
           <div>
             <h2 className="text-2xl font-semibold text-white mb-4 flex items-center space-x-2">
@@ -19,7 +17,6 @@ export default function Footer() {
                   alt="Logo"
                   width={100}
                   height={45}
-                  priority
                 />
               </Link>
             </h2>
@@ -98,14 +95,14 @@ export default function Footer() {
             © <b>GDC Malir Cantt Karachi</b> | All Rights Reserved
           </p>
         </div>
-     
-      {/* Divider */}
+
+        {/* Divider */}
         <div className="flex mt-12 pt-6 justify-between text-sm text-gray-400">
           <p>
-           <b>Website developed & maintained by</b>
+            <b>Website developed & maintained by</b>
           </p>
-           </div>
         </div>
+      </div>
     </footer>
   )
 }

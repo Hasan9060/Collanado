@@ -50,7 +50,7 @@ export default function SocietiesPage() {
                 { name: "Sir Syed Younus", image: "/Images/faculty/syed-younus.jpeg" },
                 { name: "Miss Aqsa Rao", image: "/Images/faculty/female-staff.jpeg" },
                 { name: "Miss Alishba", image: "/Images/faculty/female-staff.jpeg" },
-                { name: "Syed Hasan Rafay", image: "/Images/faculty/syed-younus.jpeg" },
+                { name: "Syed Hasan Rafay", image: "/Images/webdevelop.png" },
             ],
             description: "The Buzz Society is a group of students who work in different teams such as graphics, web development, and photography. Together, they help the college by providing digital support for events and projects. Students use their skills to design posters, manage websites, and take photos. The society helps students learn new skills, work as a team, and support the college digital needs.",
             teams: [

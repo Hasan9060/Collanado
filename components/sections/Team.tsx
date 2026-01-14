@@ -1,11 +1,7 @@
 "use client"
 
-import { useRef } from "react"
-import { useInView } from "framer-motion"
 import Image from "next/image"
-import Link from "next/link"
 import { Linkedin, Twitter, Mail } from "lucide-react"
-import { cn } from "@/lib/utils"
 
 // Team Data
 const teamMembers = [
@@ -108,16 +104,10 @@ const teamMembers = [
 ];
 
 
-// Helper to create slug
-const createSlug = (name: string) => name.toLowerCase().replace(/ /g, "-")
-
 export default function Team() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
   return (
-<>
-    {/* Hero Section */}
+    <>
+      {/* Hero Section */}
       <section className="relative pt-28 pb-28 md:pt-40 md:pb-36 bg-gradient-to-br from-slate-900 via-green-900 to-slate-900 dark:from-slate-900 dark:via-green-800 dark:to-black overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
@@ -126,7 +116,6 @@ export default function Team() {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 text-center z-10">
-
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
             Our Team
           </h1>
@@ -142,53 +131,54 @@ export default function Team() {
         </div>
       </section>
 
+      <section className="container mx-auto mt-12 px-4 md:px-8 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.05)_1px,transparent_1px)] bg-[size:20px_20px] dark:bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_1px,transparent_1px)] dark:bg-black">
+        <h2 className="text-4xl md:text-5xl font-bold mb-9 text-center text-gray-900 dark:text-white">Meet Our Team</h2>
 
-    <section ref={ref} className="container mx-auto mt-12 px-4 md:px-8 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.05)_1px,transparent_1px)] bg-[size:20px_20px] dark:bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1)_1px,transparent_1px)] dark:bg-black">
-      <h2 className="text-4xl md:text-5xl font-bold mb-9 text-center text-gray-900 dark:text-white">Meet Our Team</h2>
+        <div className="flex flex-wrap justify-center gap-8">
+          {teamMembers.map((member, index) => (
+            <div key={index} className="w-[280px]">
+              <div className="relative flex items-center justify-center">
+                <div className="absolute left-1/2 top-0 h-full w-full -translate-x-1/2">
+                  <Image
+                    src="/Images/team/picbg.svg"
+                    alt="Background"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="relative z-10 h-[260px] w-[220px] rounded-lg overflow-hidden">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
 
-      <div className="flex flex-wrap justify-center gap-8">
-        {teamMembers.map((member, index) => (
-          <div key={index} className="w-[280px]">
-           <div className="relative flex items-center justify-center">
-  <div className="absolute left-1/2 top-0 h-full w-full -translate-x-1/2">
-    <Image
-      src="/Images/team/picbg.svg"
-      alt="Background"
-      fill
-      className="object-contain"
-    />
-  </div>
-  <div className="relative z-10 h-[260px] w-[220px] rounded-lg overflow-hidden">
-    <Image
-      src={member.image}
-      alt={member.name}
-      fill
-      className="object-cover"
-    />
-  </div>
-</div>
+              <div className="mb-14 mt-4 flex flex-col items-center bg-background rounded-xl p-4 shadow-lg text-center border dark:border-gray-800">
+                <h2 className="text-lg font-medium">{member.name}</h2>
+                <h3 className="text-sm text-gray-600 dark:text-gray-400">{member.role}</h3>
+                <p className="text-sm mt-2 line-clamp-3">{member.bio}</p>
 
-            <div className="mb-14  mt-4 flex flex-col items-center bg-background rounded-xl p-4 shadow-lg text-center">
-              <h2 className="text-lg font-medium">{member.name}</h2>
-              <h3 className="text-sm text-gray-600">{member.role}</h3>
-              <p className="text-sm mt-2">{member.bio}</p>
-
-              <div className="flex items-center justify-center mt-3 space-x-3">
-                <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer">
-                  <Linkedin className="text-gray-500 hover:text-gray-900" size={18} />
-                </a>
-                <a href={member.social.twitter} target="_blank" rel="noopener noreferrer">
-                  <Twitter className="text-gray-500 hover:text-gray-900" size={18} />
-                </a>
-                <a href={member.social.email}>
-                  <Mail className="text-gray-500 hover:text-gray-900" size={18} />
-                </a>
+                <div className="flex items-center justify-center mt-3 space-x-3">
+                  <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="text-gray-500 hover:text-gray-900 dark:hover:text-white" size={18} />
+                  </a>
+                  {member.social.twitter && member.social.twitter !== "#" && (
+                    <a href={member.social.twitter} target="_blank" rel="noopener noreferrer">
+                      <Twitter className="text-gray-500 hover:text-gray-900 dark:hover:text-white" size={18} />
+                    </a>
+                  )}
+                  <a href={member.social.email}>
+                    <Mail className="text-gray-500 hover:text-gray-900 dark:hover:text-white" size={18} />
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </section>
+          ))}
+        </div>
+      </section>
     </>
   )
 }

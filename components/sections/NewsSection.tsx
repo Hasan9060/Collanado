@@ -93,9 +93,10 @@ export default function NewsSection({ news }: { news: NewsItem[] }) {
                                         <div className="relative h-48 w-full overflow-hidden">
                                             {imageUrl ? (
                                                 <Image
-                                                    src={imageUrl}
+                                                    src={urlFor(item.image).width(400).quality(80).auto('format').url()}
                                                     alt={item.title}
                                                     fill
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
                                                     className="object-cover transform group-hover:scale-110 transition-transform duration-700"
                                                 />
                                             ) : (
